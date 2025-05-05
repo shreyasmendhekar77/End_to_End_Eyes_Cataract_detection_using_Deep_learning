@@ -40,6 +40,23 @@ Update the main.py
 Update the dvc.yaml
 
 
+
+--------------------------------
+Entity file -  It contains the configuration for the different file paths.
+
+---------------------------------
+Config /Configuration file - it contains the necessary function to get the file paths and other parameters 
+
+-----------------------------------
+Components - It contains all the operations about the particular task - 
+for data ingestion - get the necessary path and variables for config file and download the data , store it etc.
+
+--------------------------------------
+Pipeline file - for each operation , it is just joining the differernt modular classes with respective the arguments.
+
+---------------------------------------
+
+
 1.Data Ingestion -
 contains the code to take the data form different sourece and storing it to the Artifacts file.
 - Update the  Workflow part ...
