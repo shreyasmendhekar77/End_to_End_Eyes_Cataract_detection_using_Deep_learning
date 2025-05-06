@@ -138,6 +138,7 @@ env.bak/
 venv.bak/
 artifacts/*
 eye_disease
+Eye_disease_Detection
 # Spyder project settings
 .spyderproject
 .spyproject
