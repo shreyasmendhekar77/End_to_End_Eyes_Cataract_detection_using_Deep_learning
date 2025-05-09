@@ -12,6 +12,11 @@ stages:
       md5: ef42a3f045b7eface3da43d0bf50876f
       size: 933
     outs:
+    - path: artifacts/data_ingestion/test
+      hash: md5
+      md5: 4bf0c205e9bbe7793d2f9339e62246da.dir
+      size: 119256600
+      nfiles: 121
     - path: artifacts/data_ingestion/train
       hash: md5
       md5: eb48368e1208cc6b6ae3a9e2c3559f41.dir
