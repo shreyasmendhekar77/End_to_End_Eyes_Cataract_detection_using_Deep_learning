@@ -1,4 +1,4 @@
-# 👁️ Ocular Disease Detection - End-to-End ML Project
+# 👁️ Cataract Disease Detection - End-to-End ML Project
 
 This project detects ocular diseases using deep learning, with a complete ML lifecycle from data ingestion to CI/CD deployment using Docker, DVC, AWS, and GitHub Actions.
 
