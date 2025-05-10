@@ -1,6 +1,6 @@
 # 👁️ Cataract Disease Detection - End-to-End ML Project
 
-This project detects ocular diseases using deep learning, with a complete ML lifecycle from data ingestion to CI/CD deployment using Docker, DVC, AWS, and GitHub Actions.
+This project detects Cataract diseases using deep learning, with a complete ML lifecycle from data ingestion to CI/CD deployment using Docker, DVC, AWS, and GitHub Actions.
 
 ---
 ## ▶️ How to Run This Project
@@ -9,8 +9,7 @@ This project detects ocular diseases using deep learning, with a complete ML lif
 
 ```bash
 # 1. Clone the repo
-https://github.com/your-username/ocular-disease-detection.git
-cd ocular-disease-detection
+https://github.com/shreyasmendhekar77/End_to_End_Eyes_Cataract_detection_using_Deep_learning
 
 # 2. Create and activate virtual environment
 python -m venv venv
