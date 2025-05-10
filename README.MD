@@ -1,182 +1,256 @@
-Occular Disease detection 
+# 👁️ Ocular Disease Detection - End-to-End ML Project
 
-Procedure to implement the  END-END project.
+This project detects ocular diseases using deep learning, with a complete ML lifecycle from data ingestion to CI/CD deployment using Docker, DVC, AWS, and GitHub Actions.
 
-------------------- Setup for the Project ( file creation to install dependecies all the content...)--------------------------
+---
+## ▶️ How to Run This Project
+
+### 🔧 Local Setup
+
+```bash
+# 1. Clone the repo
+https://github.com/your-username/ocular-disease-detection.git
+cd ocular-disease-detection
+
+# 2. Create and activate virtual environment
+python -m venv venv
+source venv/bin/activate  # Linux/macOS
+venv\Scripts\activate     # Windows
 
-Step 1 :- 
-Create the template file - it contains the required files to for implementation the template structure is -
+# 3. Install dependencies
+pip install -r requirements.txt
 
-Step 2:- 
-Steup file for the packaging our code - which contains the necessary info about the latest version of model.
+# 4. Run the main pipeline
+python main.py
+```
 
-Step 3:- 
-Create the Virtual environment and Initiate the git repo for version controlling. 
-(Download the python .gitignore file and add the environment name in it and all the files that you don't want to
-add in the repo.)
+---
 
-Step 4:-
-Requirement.txt file - which contains the necessary libraries/ Dependences for the project.
+## 🧱 Project Setup
 
-Step 5:- 
-Run the requiremnts.txt file for setup and installing the necessary libraries.
+### 🔹 Step 1: Create Project Template Structure
 
---------------------- Setup for Project is Done ----------------------------------------------------------------------------------------
+Organize the following folders and files:
 
-Implement Data Ingestion to Model Evaluation 
+```
+ocular-disease-detection/
+│
+├── src/
+│   ├── components/
+│   ├── config/
+│   ├── pipeline/
+│   ├── entity/
+│   └── ...
+│
+├── artifacts/
+├── research/              # Jupyter Notebooks for testing
+├── config/
+│   ├── config.yaml
+│   ├── params.yaml
+│   └── secrets.yaml       # Optional
+│
+├── dvc.yaml
+├── dvc.lock
+├── requirements.txt
+├── setup.py
+├── .gitignore
+├── main.py
+└── README.md
+```
 
-Research Notebook -It is used to implement the commands for testing purpose - 
-All files have similar procedure to do the testing research part- 
+---
 
-## Workflow of the Project 
-Update config.yaml
-Update secrets.yaml [Optional]
-Update params.yaml
-Update the entity
-Update the configuration manager in src config
-Update the components
-Update the pipeline
-Update the main.py
-Update the dvc.yaml
+### 🔹 Step 2: Setup File for Packaging
 
+Create `setup.py` with metadata about the project:
 
+```python
+from setuptools import find_packages, setup
 
---------------------------------
-Entity file -  It contains the configuration for the different file paths.
+setup(
+    name="ocular-disease-detection",
+    version="0.0.1",
+    author="Your Name",
+    author_email="youremail@example.com",
+    packages=find_packages(),
+    install_requires=[],
+)
+```
 
----------------------------------
-Config /Configuration file - it contains the necessary function to get the file paths and other parameters 
+---
 
------------------------------------
-Components - It contains all the operations about the particular task - 
-for data ingestion - get the necessary path and variables for config file and download the data , store it etc.
+### 🔹 Step 3: Create Virtual Environment & Git Initialization
 
---------------------------------------
-Pipeline file - for each operation , it is just joining the differernt modular classes with respective the arguments.
+```bash
+python -m venv venv
+source venv/bin/activate  # Linux/macOS
+venv\Scripts\activate     # Windows
 
----------------------------------------
+git init
+curl https://raw.githubusercontent.com/github/gitignore/main/Python.gitignore -o .gitignore
+```
 
+Add `.env`, `artifacts/`, and `venv/` to `.gitignore`.
 
-1.Data Ingestion -
-contains the code to take the data form different sourece and storing it to the Artifacts file.
-- Update the  Workflow part ...
+---
 
-2.Data Preprocessing validation - 
-Do the necessary preprocessing as per requirement.
+### 🔹 Step 4: Requirements
 
-3.Model Training .
-- Take the model from API  ( transfer learning )/ Create your own model 
-- Use the params.yaml for paramters of the model.
+Add dependencies to `requirements.txt`:
 
-4.Model Evaluation and Experiment tracking ...
-- Use the Mlflow for experiment tracking
-- Upadte the username and other credentials like - 
+```
+dvc
+mlflow
+tensorflow
+pandas
+scikit-learn
+PyYAML
+```
 
+Install:
 
+```bash
+pip install -r requirements.txt
+```
 
-DVC pipeline ...
-DVC (Data Version Control) pipelines are used to track and automate machine learning workflows, ensuring that your data, code, and model artifacts are versioned and reproducible. A DVC pipeline consists of stages, each representing a step (like preprocessing, training, or evaluation), connected by dependencies (data files, scripts, etc.).
+---
 
-🛠️ Basic Components of a DVC Pipeline
-dvc.yaml – Defines stages of the pipeline and their dependencies/outputs.
+## 🧪 Research Notebooks
 
-dvc.lock – Records exact versions of inputs/outputs used in the last run.
+Use the `research/` folder to prototype and experiment with code (e.g., loading data, testing model performance).
 
-params.yaml – (Optional) Stores hyperparameters or config variables.
+---
 
+## 🔄 Project Workflow
 
+### ⚙️ Core Steps
 
-DVC pipeline has 4 stages:
+1. **Update Configuration Files**
 
-data_ingestion – Splits raw data into train/test sets.
+   * `config.yaml`, `params.yaml`, `secrets.yaml` (optional)
+2. **Entity Module** - Data classes for configs
+3. **Config Manager** - Logic to load and validate config
+4. **Component Modules** - Logic for ingestion, processing, training, etc.
+5. **Pipeline Scripts** - Ties together components
+6. **`main.py`** - Entry point to run full pipeline
 
-prepare_base_model – Builds a base CNN model using parameters.
+---
 
-training – Trains the model with the prepared data and base model.
+## ⚙️ DVC Pipeline
 
-evaluation – Evaluates the trained model and logs metrics (scores.json).
+### 📁 Key Files
 
-Each stage uses specific scripts, configs, parameters, and outputs artifacts for the next stage.
+* `dvc.yaml`: Defines stages and dependencies
+* `dvc.lock`: Tracks versions of artifacts
+* `params.yaml`: Parameters used in pipelines
 
+### 🧹 DVC Stages
 
-Docker ...
+1. `data_ingestion`: Downloads/splits data
+2. `prepare_base_model`: Sets up CNN model
+3. `training`: Trains the model
+4. `evaluation`: Logs metrics using MLflow
 
+Run the pipeline:
 
+```bash
+dvc repro
+```
 
+---
 
+## 🐳 Docker Integration
 
+Create a `Dockerfile`:
 
-# AWS-CICD-Deployment-with-Github-Actions
+```Dockerfile
+FROM python:3.9
+WORKDIR /app
+COPY . /app
+RUN pip install -r requirements.txt
+CMD ["python", "main.py"]
+```
 
-## 1. Login to AWS console.
+---
 
-## 2. Create IAM user for deployment
+## ☁️ AWS CI/CD with GitHub Actions
 
-	#with specific access
+### Step-by-Step Deployment
 
-	1. EC2 access : It is virtual machine
+#### 1. Login to AWS Console
 
-	2. ECR: Elastic Container registry to save your docker image in aws
+#### 2. Create IAM User with Access
 
+* `AmazonEC2ContainerRegistryFullAccess`
+* `AmazonEC2FullAccess`
 
-	#Description: About the deployment
+#### 3. Create ECR Repository
 
-	1. Build docker image of the source code
+Save URI:
+`<your-account-id>.dkr.ecr.<region>.amazonaws.com/<repo-name>`
 
-	2. Push your docker image to ECR
+#### 4. Launch EC2 (Ubuntu)
 
-	3. Launch Your EC2 
+#### 5. Install Docker on EC2
 
-	4. Pull Your image from ECR in EC2
+```bash
+sudo apt update && sudo apt upgrade -y
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+sudo usermod -aG docker ubuntu
+newgrp docker
+```
 
-	5. Lauch your docker image in EC2
+#### 6. Configure EC2 as Self-hosted GitHub Runner
 
-	#Policy:
+Go to GitHub:
+`Settings > Actions > Runners > New self-hosted runner`
+Choose OS and run setup commands on EC2.
 
-	1. AmazonEC2ContainerRegistryFullAccess
+#### 7. Setup GitHub Secrets
 
-	2. AmazonEC2FullAccess
+| Name                    | Value                                            |
+| ----------------------- | ------------------------------------------------ |
+| `AWS_ACCESS_KEY_ID`     | Your AWS access key                              |
+| `AWS_SECRET_ACCESS_KEY` | Your AWS secret                                  |
+| `AWS_REGION`            | `us-west-1` (or your region)                     |
+| `AWS_ECR_LOGIN_URI`     | `<your-account-id>.dkr.ecr.region.amazonaws.com` |
+| `ECR_REPOSITORY_NAME`   | `mlops_project`                                  |
 
-	
-## 3. Create ECR repo to store/save docker image
-    - Save the URI: 507319107220.dkr.ecr.us-west-1.amazonaws.com/mlops_project
+---
 
-	
-## 4. Create EC2 machine (Ubuntu) 
 
-## 5. Open EC2 and Install docker in EC2 Machine:
-	
-	
-	#optinal
+### 🧪 Run DVC Pipeline
 
-	sudo apt-get update -y
+```bash
+dvc repro
+```
 
-	sudo apt-get upgrade
-	
-	#required
+### 🐳 Run Using Docker
 
-	curl -fsSL https://get.docker.com -o get-docker.sh
+```bash
+# Build image
+docker build -t ocular-disease-app .
 
-	sudo sh get-docker.sh
+# Run container
+docker run -p 8080:8080 ocular-disease-app
+```
 
-	sudo usermod -aG docker ubuntu
+### ☁️ CI/CD via GitHub Actions
 
-	newgrp docker
-	
-# 6. Configure EC2 as self-hosted runner:
-    setting>actions>runner>new self hosted runner> choose os> then run command one by one
+Once everything is pushed to GitHub with secrets configured, GitHub Actions will:
 
+* Build Docker image
+* Push it to ECR
+* Pull and run it on EC2
 
-# 7. Setup github secrets:
+---
 
-    AWS_ACCESS_KEY_ID=
+## ✅ Final Notes
 
-    AWS_SECRET_ACCESS_KEY=
+* Use **MLflow** for model tracking.
+* Use **DVC** for pipeline versioning.
+* Use **Docker + AWS + GitHub Actions** for CI/CD.
 
-    AWS_REGION = us-west-1
-
-    AWS_ECR_LOGIN_URI = demo>>  566373416292.dkr.ecr.ap-south-1.amazonaws.com
-
-    ECR_REPOSITORY_NAME = 
-
+---
 
